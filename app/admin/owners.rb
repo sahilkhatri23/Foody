@@ -39,8 +39,14 @@ ActiveAdmin.register User, as: 'owner' do
     end
 
     def update
-      User.owner.find(params[:id]).update(role: params[:user][:role])
-      redirect_to admin_owner_path(id: params[:id]) rescue ActiveRecord::RecordNotFound redirect_to admin_owners_path
+      user = User.owner.find(params[:id])
+      user.update(role: params[:user][:role])
+      owner_user_count = User.where(role: "owner").count
+      if user.owner? && owner_user_count == 1
+        redirect_to admin_owner_path(id: params[:id])
+      else
+        redirect_to admin_owners_path
+      end
     end
 
     def create

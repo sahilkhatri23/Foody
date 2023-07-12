@@ -39,9 +39,11 @@ ActiveAdmin.register User, as: 'customer' do
     end
 
     def update
-      customer = User.customer.find(params[:id]).update(role: params[:user][:role])
-      if customer
-        redirect_to admin_customers_path
+      user = User.customer.find(params[:id])
+      user.update(role: params[:user][:role])
+      customer_user_count = User.where(role: "customer").count
+      if user.customer? && customer_user_count == 1
+        redirect_to admin_customer_path(id: params[:id])
       else
         redirect_to admin_customers_path
       end
