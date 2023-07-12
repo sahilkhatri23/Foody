@@ -9,7 +9,6 @@
 
 // Active Admin's got SASS!
 $primary-color: #0000FF;
-@import "active_admin/mixins";
 @import "arctic_admin/base";
 
 // Overriding any non-variable Sass must be done after the fact.
