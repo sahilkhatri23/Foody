@@ -4,7 +4,6 @@ class AuthenticationController < ApplicationController
 	
   # POST /auth/login
   def login
-  	byebug
     @user = User.find_by_email(params[:email])
     if @user&.authenticate(params[:password])
       token = JsonWebToken.encode(user_id: @user.id)
