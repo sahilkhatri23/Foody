@@ -1,4 +1,4 @@
-ActiveAdmin.register User, as: 'owner' do
+ActiveAdmin.register User, as: 'Restaurant Owner' do
   menu parent: "Accounts"
   filter :name
   filter :username
@@ -43,7 +43,7 @@ ActiveAdmin.register User, as: 'owner' do
       user.update(role: params[:user][:role])
       owner_user_count = User.where(role: "owner").count
       if user.owner? && owner_user_count == 1
-        redirect_to admin_owner_path(id: params[:id])
+        redirect_to admin_restaurant_owner_path(id: params[:id])
       else
         redirect_to admin_owners_path
       end
@@ -52,7 +52,7 @@ ActiveAdmin.register User, as: 'owner' do
     def create
       user_params = params.require(:user).permit(:name, :username, :email, :role)
       user = User.create(user_params.merge(password: "#{user_params[:name]}@123"))
-      redirect_to admin_owner_path(id: user.id)
+      redirect_to admin_restaurant_owner_path(id: user.id)
     end
   end
 end
