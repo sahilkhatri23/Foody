@@ -71,6 +71,13 @@ group :test do
   gem "webdrivers"
 end
 
+group :rubocop do
+  gem "rubocop"
+  gem "rubocop-packaging"
+  gem "rubocop-rspec"
+  gem "rubocop-rails"
+end
+
 gem "activeadmin", "~> 2.13"
 
 gem "devise", "~> 4.9"
@@ -86,3 +93,5 @@ gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'byebug', '~> 11.1', '>= 11.1.3'
+
+gem 'activeadmin_addons'
