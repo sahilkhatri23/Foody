@@ -6,7 +6,7 @@ class FranchisesController < ApplicationController
 
   def create
     byebug
-    franchise = current_user.franchises.create!(franchise_params)
+    franchise = @curr_user.franchises.create!(franchise_params)
     render json: franchise, status: :ok
   end
 
@@ -17,8 +17,7 @@ class FranchisesController < ApplicationController
   end
 
   def check_authentication
-    byebug
-    if curr_user.role == "customer"
+    if @curr_user.role == "customer"
       return render json: {message: "you're not an authorized person!"}
     end
   end

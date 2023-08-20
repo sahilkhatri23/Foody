@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_074906) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_22_085138) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -44,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_074906) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_franchises_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,4 +58,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_074906) do
     t.integer "role", default: 0
   end
 
+  add_foreign_key "franchises", "users"
 end

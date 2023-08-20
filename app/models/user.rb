@@ -9,4 +9,7 @@ class User < ApplicationRecord
 
   # Enums
   enum role: [:customer, :owner]
+
+  #Associations
+  has_many :franchises, dependent: :destroy
 end
